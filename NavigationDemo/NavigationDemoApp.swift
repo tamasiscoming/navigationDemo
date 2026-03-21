@@ -7,11 +7,15 @@
 
 import SwiftUI
 
+/// Main app entry point for the standalone library navigation demo.
 @main
-struct NavigationDemoApp: App {
+struct LibraryDemoApp: App {
+    @StateObject private var navigationManager = LibraryNavigationManager()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LibraryTabView()
+                .environmentObject(navigationManager)
         }
     }
 }

@@ -7,18 +7,19 @@
 
 import SwiftUI
 
+/// Convenience entry view that hosts the library tab root.
 struct ContentView: View {
+    @StateObject private var navigationManager = LibraryNavigationManager()
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        LibraryTabView()
+            .environmentObject(navigationManager)
     }
 }
 
-#Preview {
-    ContentView()
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+            .previewDisplayName("Content View")
+    }
 }
