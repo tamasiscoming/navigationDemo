@@ -99,6 +99,15 @@ struct CustomToolbarModifier: ViewModifier {
     }
 
     @ViewBuilder
+    private func toolbarTapTarget<Content: View>(@ViewBuilder content: () -> Content) -> some View {
+        content()
+            .allowsHitTesting(false)
+            .frame(minWidth: 44, minHeight: 44, alignment: .center)
+            .background(Color.black.opacity(0.001))
+            .contentShape(Rectangle())
+    }
+
+    @ViewBuilder
     private func leadingControl(_ item: ToolbarActionItem) -> some View {
         if isBackButton(item), !backOptions.isEmpty {
             Menu {
@@ -110,22 +119,22 @@ struct CustomToolbarModifier: ViewModifier {
                     }
                 }
             } label: {
-                itemLabel(item)
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 6)
-                    .contentShape(Rectangle())
+                toolbarTapTarget {
+                    itemLabel(item)
+                }
             } primaryAction: {
                 handlePrimaryBack()
             }
+            .buttonStyle(.plain)
         } else {
             Button {
                 item.action?()
             } label: {
-                itemLabel(item)
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 6)
-                    .contentShape(Rectangle())
+                toolbarTapTarget {
+                    itemLabel(item)
+                }
             }
+            .buttonStyle(.plain)
         }
     }
 
@@ -134,11 +143,11 @@ struct CustomToolbarModifier: ViewModifier {
         Button {
             item.action?()
         } label: {
-            itemLabel(item)
-                .padding(.vertical, 8)
-                .padding(.horizontal, 4)
-                .contentShape(Rectangle())
+            toolbarTapTarget {
+                itemLabel(item)
+            }
         }
+        .buttonStyle(.plain)
     }
 
     func body(content: Content) -> some View {
