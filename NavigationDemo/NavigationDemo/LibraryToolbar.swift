@@ -99,7 +99,7 @@ struct CustomToolbarModifier: ViewModifier {
     }
 
     @ViewBuilder
-    private func toolbarTapTarget<Content: View>(@ViewBuilder content: () -> Content) -> some View {
+    private func backTapTarget<Content: View>(@ViewBuilder content: () -> Content) -> some View {
         content()
             .allowsHitTesting(false)
             .frame(minWidth: 44, minHeight: 44, alignment: .center)
@@ -119,7 +119,7 @@ struct CustomToolbarModifier: ViewModifier {
                     }
                 }
             } label: {
-                toolbarTapTarget {
+                backTapTarget {
                     itemLabel(item)
                 }
             } primaryAction: {
@@ -130,11 +130,11 @@ struct CustomToolbarModifier: ViewModifier {
             Button {
                 item.action?()
             } label: {
-                toolbarTapTarget {
-                    itemLabel(item)
-                }
+                itemLabel(item)
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 6)
+                    .contentShape(Rectangle())
             }
-            .buttonStyle(.plain)
         }
     }
 
@@ -143,11 +143,11 @@ struct CustomToolbarModifier: ViewModifier {
         Button {
             item.action?()
         } label: {
-            toolbarTapTarget {
-                itemLabel(item)
-            }
+            itemLabel(item)
+                .padding(.vertical, 8)
+                .padding(.horizontal, 4)
+                .contentShape(Rectangle())
         }
-        .buttonStyle(.plain)
     }
 
     func body(content: Content) -> some View {
