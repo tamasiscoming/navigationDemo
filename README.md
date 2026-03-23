@@ -2,6 +2,10 @@
 
 A standalone iOS SwiftUI navigation demo built around a library theme, with realistic mock data and multi-step back navigation.
 
+## iOS Requirement
+- Minimum supported version: **iOS 16.0**
+- Built and tested with modern Xcode toolchains (project format may be newer, but deployment target is iOS 16.0)
+
 ## Highlights
 - 5 independent tab stacks: `Catalog`, `Clubs`, `Account`, `Insights`, `Authors`
 - Central manager: `LibraryNavigationManager`

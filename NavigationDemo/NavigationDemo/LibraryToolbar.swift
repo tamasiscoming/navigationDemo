@@ -94,12 +94,8 @@ struct CustomToolbarModifier: ViewModifier {
         }
     }
 
-    private func handlePrimaryBack(fallbackAction: (() -> Void)?) {
-        if let fallbackAction {
-            fallbackAction()
-        } else {
-            nav.popCurrent(by: 1)
-        }
+    private func handlePrimaryBack() {
+        nav.popCurrent(by: 1)
     }
 
     @ViewBuilder
@@ -115,14 +111,20 @@ struct CustomToolbarModifier: ViewModifier {
                 }
             } label: {
                 itemLabel(item)
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 6)
+                    .contentShape(Rectangle())
             } primaryAction: {
-                handlePrimaryBack(fallbackAction: item.action)
+                handlePrimaryBack()
             }
         } else {
             Button {
                 item.action?()
             } label: {
                 itemLabel(item)
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 6)
+                    .contentShape(Rectangle())
             }
         }
     }
@@ -133,6 +135,9 @@ struct CustomToolbarModifier: ViewModifier {
             item.action?()
         } label: {
             itemLabel(item)
+                .padding(.vertical, 8)
+                .padding(.horizontal, 4)
+                .contentShape(Rectangle())
         }
     }
 

@@ -2,6 +2,9 @@
 
 This folder contains the standalone SwiftUI library navigation demo app.
 
+## iOS Requirement
+- Minimum supported version: **iOS 16.0**
+
 ## What is inside
 - `LibraryModels.swift`: entities, routes, and mock data
 - `LibraryNavigationManager.swift`: tab-aware navigation state and back option logic
