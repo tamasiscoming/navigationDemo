@@ -3,7 +3,7 @@
 This folder contains the standalone SwiftUI library navigation demo app.
 
 ## iOS Requirement
-- Minimum supported version: **iOS 16.0**
+- Minimum supported version: **iOS 17.0**
 
 ## What is inside
 - `LibraryModels.swift`: entities, routes, and mock data
